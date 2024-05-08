@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const { CreateUser, ActivateUser, LoginUser } = require('./Controlers/user.controler');
 const app = express();
+var cors = require('cors')
+app.use(cors())
 app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 

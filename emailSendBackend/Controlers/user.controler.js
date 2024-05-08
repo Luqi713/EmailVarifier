@@ -7,7 +7,7 @@ module.exports.CreateUser = async (req, res) => {
   try {
     const existingUser = await inActivateUser.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "Email already exists" });
+      return res.status(201).json({ message: "Email already exists" });
     }
 
     const registrationCode = Math.floor(100000 + Math.random() * 900000);
@@ -49,10 +49,10 @@ module.exports.LoginUser = async (req, res) => {
   try {
     const user = await inActivateUser.findOne({ email, password });
     if (!user) {
-      return res.status(400).json({ message: "Invalid Email or Password" });
+      return res.status(201).json({ message: "Invalid Email or Password" });
     }
     if (user.isActive === false) {
-      return res.status(200).json({ message: "Email not verified!" });
+      return res.status(202).json({ message: "Email not verified!" });
     }
 
     return res.status(200).json({ message: "Login Successfully!", data: user });
